@@ -230,7 +230,6 @@ const generateSWConfig = () => ({
 });
 
 const htmlOutputConfig = is_release => ({
-    template: 'index.html',
     filename: 'index.html',
     inject: 'body',
     // [AI]
@@ -245,6 +244,27 @@ const htmlOutputConfig = is_release => ({
         auth_url: brandConfig.auth.production,
     },
     // [/AI]
+    templateContent: ({ htmlWebpackPlugin }) => {
+        // Read the template file and manually interpolate template variables
+        // This ensures ejs template syntax is properly processed
+        const fs = require('fs');
+        const path = require('path');
+        let templateContent = fs.readFileSync(path.resolve(__dirname, '../src/index.html'), 'utf8');
+
+        const params = htmlWebpackPlugin.options.templateParameters;
+        // Use dotall flag to match across newlines
+        templateContent = templateContent.replace(/<%=([\s\S]*?)%>/g, (match, key) => {
+            const keyTrimmed = key.trim();
+            // Handle htmlWebpackPlugin.options.templateParameters.KEY syntax
+            if (keyTrimmed.includes('htmlWebpackPlugin.options.templateParameters.')) {
+                const paramKey = keyTrimmed.replace('htmlWebpackPlugin.options.templateParameters.', '').trim();
+                return params[paramKey] || '';
+            }
+            return match;
+        });
+
+        return templateContent;
+    },
     meta: is_release
         ? {
               versionMetaTAG: {
