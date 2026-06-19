@@ -2,7 +2,8 @@
     "name": "root",
     "private": true,
     "workspaces": [
-        "packages/*"
+        "packages/*",
+        "apps/*"
     ],
     "engines": {
         "node": "20.x"
@@ -126,7 +127,7 @@
         "ts-jest": "^29.2.5"
     },
     "scripts": {
-        "dev": "npm run serve --workspace=@deriv/trader",
+        "dev": "npm run dev --workspace=demo",
         "serve": "f () { npm exec --workspace=@deriv/${1:-'*'} -- npm run serve $npm_config_open;}; f",
         "bootstrap": "npm ci --strict-peer-deps --verbose",
         "bootstrap:ci": "npm ci --strict-peer-deps --verbose",
@@ -152,6 +153,7 @@
         "@types/react-transition-group": "^4.4.5",
         "babel-jest": "^29.7.0",
         "dotenv": "^8.2.0",
+        "next": "^16.2.9",
         "nth-check": "2.0.1",
         "pbkdf2": "^3.1.3",
         "react": "^18.2.0",
