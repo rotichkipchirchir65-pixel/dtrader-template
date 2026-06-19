@@ -232,6 +232,7 @@ const generateSWConfig = () => ({
 const htmlOutputConfig = is_release => ({
     template: 'index.html',
     filename: 'index.html',
+    inject: 'body',
     // [AI]
     templateParameters: {
         brand_name: brandConfig.brand_name,

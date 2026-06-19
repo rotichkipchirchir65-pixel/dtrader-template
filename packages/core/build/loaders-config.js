@@ -17,6 +17,9 @@ const js_loaders = [
 const html_loaders = [
     {
         loader: 'html-loader',
+        options: {
+            esModule: false,
+        },
     },
 ];
 
