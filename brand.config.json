@@ -8,8 +8,8 @@
         "production": "dtrader-template.pages.dev"
     },
     "platform": {
-        "name": "Trading Platform",
-        "description": "A whole new trading experience on a powerful yet easy to use platform.",
+        "name": "White-Label Trading Platform",
+        "description": "Trade derivatives with real-time charts, portfolio tracking, and instant execution on a powerful and easy to use white-label platform.",
         "logo": "brand/platform-logo.svg",
         "home_url": "https://home.deriv.com/dashboard",
         "help_centre_url": "https://trade.deriv.com/help-centre"
